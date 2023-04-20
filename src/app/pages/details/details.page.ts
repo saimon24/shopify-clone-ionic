@@ -90,9 +90,9 @@ export class DetailsPage implements OnInit, AfterViewInit {
     // const move = y + ev.deltaY;
 
     this.domCtrl.write(() => {
-      if (move >= 240 || move <= 100) {
-        return;
-      }
+      // if (move >= 240 || move <= 100) {
+      //   return;
+      // }
       this.renderer.setStyle(
         this.myDiv.nativeElement,
         'webkitTransform',
