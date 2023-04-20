@@ -12,6 +12,7 @@ import {
   DomController,
   Gesture,
   GestureController,
+  IonModal,
   IonRouterOutlet,
   IonicModule,
 } from '@ionic/angular';
@@ -47,6 +48,15 @@ export class DetailsPage implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // this.addGestureHandler();
+    setTimeout(() => {
+      const a: HTMLAnchorElement | null = document.querySelector('#trigger');
+      a?.click();
+    }, 500);
+  }
+
+  async breakpointChanged(modal: IonModal) {
+    const breakpoint = await modal.getCurrentBreakpoint();
+    this.sheetOpen = breakpoint === 0.25;
   }
 
   toggleBottomSheet() {

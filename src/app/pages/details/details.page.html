@@ -188,7 +188,7 @@
     </ng-template>
   </ion-modal>
 
-  <!-- 
+  <!--
       <ion-button id="open-bottom-modal" expand="block"
     >Open Sheet Modal</ion-button
   >
@@ -247,7 +247,40 @@
   </ion-modal> -->
 </ion-content>
 
-<ion-footer>
+<a id="trigger" style="visibility: none;" #trigger style="display: none;"></a>
+<ion-modal trigger="trigger" [handle]="false" style="bottom: 57px" #modal2 [initialBreakpoint]="0.07" [breakpoints]="[0.07, 0.25]" (ionBreakpointDidChange)="breakpointChanged(modal2)">
+  <ng-template>
+    <ion-content>
+      <div class="header">
+        <h3>More details</h3>
+        <div class="dropdown-btn" (click)="modal2.setCurrentBreakpoint(sheetOpen ? 0.07 : 0.25); sheetOpen = !sheetOpen">
+          <ion-icon [name]="sheetOpen ? 'chevron-down-outline' : 'chevron-up-outline'"></ion-icon>
+        </div>
+      </div>
+
+      <ion-list>
+        <ion-item detail="true" lines="none">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          <ion-label>Shipping</ion-label>
+          <span slot="end"> 0 kg </span>
+        </ion-item>
+        <ion-item detail="true" lines="none">
+          <ion-icon name="folder-outline" slot="start"></ion-icon>
+          <ion-label>Product organization</ion-label>
+          <span slot="end"> Galaxies.dev </span>
+        </ion-item>
+        <ion-item detail="true" lines="none">
+          <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+          <ion-label>Collections</ion-label>
+          <span slot="end"> Home page </span>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- <ion-footer>
   <div class="footer-div" #myDiv>
     <div class="header">
       <h3>More details</h3>
@@ -276,4 +309,4 @@
       </ion-item>
     </ion-list>
   </div>
-</ion-footer>
+</ion-footer> -->
