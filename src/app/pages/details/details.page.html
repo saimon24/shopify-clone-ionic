@@ -246,3 +246,34 @@
     </ng-template>
   </ion-modal> -->
 </ion-content>
+
+<ion-footer>
+  <div class="footer-div" #myDiv>
+    <div class="header">
+      <h3>More details</h3>
+      <div class="dropdown-btn" (click)="toggleBottomSheet()">
+        <ion-icon
+          [name]="sheetOpen ? 'chevron-down-outline' : 'chevron-up-outline'"
+        ></ion-icon>
+      </div>
+    </div>
+
+    <ion-list>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        <ion-label>Shipping</ion-label>
+        <span slot="end"> 0 kg </span>
+      </ion-item>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="folder-outline" slot="start"></ion-icon>
+        <ion-label>Product organization</ion-label>
+        <span slot="end"> Galaxies.dev </span>
+      </ion-item>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+        <ion-label>Collections</ion-label>
+        <span slot="end"> Home page </span>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-footer>
