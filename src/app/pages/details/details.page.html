@@ -1,0 +1,248 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button
+        color="primary"
+        defaultHref="/products"
+        text="Products"
+      ></ion-back-button>
+    </ion-buttons>
+
+    <div
+      class="title-wrapper"
+      id="open-modal"
+      [ngStyle]="{background: loading ? '#fff' : '#eff5f4'}"
+      tappable
+    >
+      <ng-container *ngIf="!loading; else loadingTemplate"
+        ><ion-label color="primary"
+          >Active
+          <ion-icon name="chevron-down"></ion-icon>
+        </ion-label>
+        <span>5 channels</span></ng-container
+      >
+      <ng-template #loadingTemplate>
+        <ion-label color="primary">
+          <ion-skeleton-text style="width: 80px" animated></ion-skeleton-text>
+        </ion-label>
+        <span>
+          <ion-skeleton-text style="width: 60px"></ion-skeleton-text
+        ></span>
+      </ng-template>
+    </div>
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        [color]="loading ? 'medium' : 'primary'"
+        [disabled]="loading"
+      >
+        <ion-icon name="share-outline" slot="icon-only" size="small"></ion-icon>
+      </ion-button>
+      <ion-button
+        fill="clear"
+        [color]="loading ? 'medium' : 'primary'"
+        [disabled]="loading"
+      >
+        <ion-icon
+          name="ellipsis-horizontal"
+          slot="icon-only"
+          size="small"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item *ngIf="loading" lines="none">
+    <ion-icon name="pricetag" slot="start" color="medium"></ion-icon>
+    <ion-label>
+      <ion-skeleton-text
+        animated
+        style="width: 50%; padding: 2px"
+      ></ion-skeleton-text>
+      <ion-skeleton-text
+        style="width: 100%"
+        class="ion-margin-top"
+      ></ion-skeleton-text>
+      <ion-skeleton-text style="width: 100%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid *ngIf="loading" class="ion-padding-top">
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-label>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-skeleton-text
+          style="width: 100%; height: 20vh"
+        ></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-row>
+          <ion-col size="6">
+            <ion-skeleton-text
+              style="width: 100%; height: 8vh"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              style="width: 100%; height: 8vh"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              style="width: 100%; height: 8vh"
+            ></ion-skeleton-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-skeleton-text
+              style="width: 100%; height: 8vh"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="12">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="loading" class="ion-padding-top">
+    <ion-item *ngFor="let i of [1,2,3]" lines="none" detail="true">
+      <ion-skeleton-text
+        style="width: 50px; height: 50px"
+        slot="start"
+      ></ion-skeleton-text>
+      <ion-label>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        <ion-skeleton-text
+          style="width: 60%"
+          class="ion-margin-top"
+        ></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-modal
+    #modal
+    trigger="open-modal"
+    [presentingElement]="presentingElement"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Connor Smith</h2>
+              <p>Sales Rep</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Daniel Smith</h2>
+              <p>Product Designer</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Greg Smith</h2>
+              <p>Director of Operations</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Zoey Smith</h2>
+              <p>CEO</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- 
+      <ion-button id="open-bottom-modal" expand="block"
+    >Open Sheet Modal</ion-button
+  >
+  <ion-modal
+    #modalbottom
+    trigger="open-bottom-modal"
+    [initialBreakpoint]="0.25"
+    [breakpoints]="[0, 0.25, 0.5, 0.75]"
+  >
+    <ng-template>
+      <ion-content>
+        <ion-searchbar
+          placeholder="Search"
+          (click)="modal.setCurrentBreakpoint(0.75)"
+        ></ion-searchbar>
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Connor Smith</h2>
+              <p>Sales Rep</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Daniel Smith</h2>
+              <p>Product Designer</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Greg Smith</h2>
+              <p>Director of Operations</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Zoey Smith</h2>
+              <p>CEO</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->
+</ion-content>

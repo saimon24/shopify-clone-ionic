@@ -1,0 +1,60 @@
+.popover-icon {
+  --ionicon-stroke-width: 42px;
+}
+
+ion-content {
+  --background: #f3f1f2;
+}
+
+ion-list {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.section-header {
+  font-weight: 500;
+}
+
+.product-image {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px; /* Set a fixed height for the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Use object-fit: contain to fit the image inside the container */
+}
+
+swiper-container {
+  background: #fff;
+  padding: 10px;
+}
+
+swiper-slide {
+  border: 1px solid var(--ion-color-step-150);
+  border-radius: 5px;
+}
+.product-text {
+  padding-left: 4px;
+  padding-right: 4px;
+  ion-label {
+    white-space: nowrap; /* Prevents text from wrapping to the next line */
+    overflow: hidden; /* Hides any overflow beyond the label's bounds */
+    text-overflow: ellipsis; /* Adds an ellipsis at the end of the label when text overflows */
+  }
+}
+
+// .absolute-bg {
+//   position: absolute;
+//   top: -200px;
+//   left: 0;
+//   width: 100%;
+//   height: 600px;
+//   background: red;
+//   z-index: 0;
+// }

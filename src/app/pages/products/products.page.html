@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Products</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="popover">
+        <ion-icon
+          slot="icon-only"
+          name="add"
+          class="popover-icon"
+          color="primary"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <div class="absolute-bg"></div>
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="doRefresh($event)"
+    pullFactor="0.8"
+    pullMin="60"
+    pullMax="120"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items" lines="none" detail="true">
+      <ion-icon [name]="item.icon" slot="start" color="medium"></ion-icon>
+      <ion-label color="medium">{{item.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="ion-margin-top ion-margin-bottom">
+    <ion-item lines="none">
+      <ion-icon name="qr-code" slot="start" color="medium"></ion-icon>
+      <ion-label color="medium">Inventory scanner</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div class="swiper-box">
+    <ion-item lines="none">
+      <ion-label class="section-header">Recently updated products</ion-label>
+      <ion-button fill="clear" slot="end">View all</ion-button>
+    </ion-item>
+
+    <swiper-container [slidesPerView]="2.5" [spaceBetween]="10">
+      <swiper-slide
+        *ngFor="let slide of products"
+        routerLink="/products/details"
+      >
+        <div class="product-image">
+          <img [src]="slide.image" />
+        </div>
+        <ion-label class="ion-margin ion-padding">
+          {{ slide.title| slice:0:25 }}{{ slide.title.length > 25 ? '...' : ''
+          }}
+          <p class="ion-padding-top">
+            {{ slide.description| slice:0:15 }}{{ slide.description.length > 15
+            ? '...' : '' }}
+          </p>
+        </ion-label>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div class="swiper-box ion-margin-top">
+    <ion-item lines="none">
+      <ion-label class="section-header">Out of stock products</ion-label>
+      <ion-button fill="clear" slot="end">View all</ion-button>
+    </ion-item>
+
+    <swiper-container
+      [slidesPerView]="2.5"
+      [spaceBetween]="10"
+      [freeMode]="true"
+    >
+      <swiper-slide *ngFor="let slide of products">
+        <div class="product-image">
+          <img [src]="slide.image" />
+        </div>
+        <div class="product-text">
+          <ion-label class="ion-no-margin">
+            {{ slide.title| slice:0:25 }}{{ slide.title.length > 25 ? '...' : ''
+            }}
+            <p>
+              {{ slide.description| slice:0:15 }}{{ slide.description.length >
+              15 ? '...' : '' }}
+            </p>
+          </ion-label>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <ion-popover trigger="popover" triggerAction="click">
+    <ng-template>
+      <ion-content>
+        <ion-item lines="none">
+          <ion-icon color="medium" name="pricetag" slot="start"></ion-icon>
+          <ion-label>Add Product</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon color="medium" name="pricetags" slot="start"></ion-icon>
+          <ion-label class="ion-text-wrap">Add to Collection</ion-label>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</ion-content>
