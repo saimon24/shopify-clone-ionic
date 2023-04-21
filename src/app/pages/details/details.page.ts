@@ -12,6 +12,7 @@ import {
   DomController,
   Gesture,
   GestureController,
+  IonModal,
   IonRouterOutlet,
   IonicModule,
 } from '@ionic/angular';
@@ -29,6 +30,7 @@ export class DetailsPage implements OnInit, AfterViewInit {
   @ViewChild('myDiv') myDiv!: ElementRef;
   gesture?: Gesture;
   sheetOpen = false;
+  @ViewChild('trigger') trigger!: ElementRef;
 
   constructor(
     private routerOutlet: IonRouterOutlet,
@@ -41,12 +43,19 @@ export class DetailsPage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     setTimeout(() => {
-      // this.loading = false;
+      this.loading = false;
     }, 1500);
   }
 
   ngAfterViewInit(): void {
-    // this.addGestureHandler();
+    setTimeout(() => {
+      this.trigger.nativeElement.click();
+    }, 100);
+  }
+
+  async breakpointChanged(modal: IonModal) {
+    const breakpoint = await modal.getCurrentBreakpoint();
+    this.sheetOpen = breakpoint === 0.25;
   }
 
   toggleBottomSheet() {
@@ -66,44 +75,5 @@ export class DetailsPage implements OnInit, AfterViewInit {
       }
       this.sheetOpen = !this.sheetOpen;
     });
-  }
-
-  addGestureHandler() {
-    this.gesture = this.gestureCtrl.create({
-      el: this.myDiv.nativeElement,
-      gestureName: 'my-gesture',
-      threshold: 0,
-      onMove: (ev) => this.handleMove(ev),
-      onEnd: (ev) => this.handleEnd(ev),
-    });
-    this.gesture.enable();
-  }
-
-  handleMove(ev: any) {
-    const deltaY = ev.deltaY;
-    // console.log('deltaY:', deltaY);
-    // const y = this.myDiv.nativeElement.style.transform;
-    // console.log('y:', y);
-    // const newY = Math.min(0, Math.max(y + deltaY, -300));
-    // this.myDiv.nativeElement.style.transform = `translateY(${deltaY}px)`;
-
-    // const move = y + ev.deltaY;
-
-    this.domCtrl.write(() => {
-      // if (move >= 240 || move <= 100) {
-      //   return;
-      // }
-      this.renderer.setStyle(
-        this.myDiv.nativeElement,
-        'webkitTransform',
-        `translate3d(0, ${deltaY}px, 0)`
-      );
-    });
-  }
-
-  handleEnd(ev: any) {
-    console.log('END');
-
-    // Handle end of gesture
   }
 }
