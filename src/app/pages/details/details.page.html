@@ -1,54 +1,29 @@
 <ion-header>
   <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-back-button
-        color="primary"
-        defaultHref="/products"
-        text="Products"
-      ></ion-back-button>
+      <ion-back-button color="primary" defaultHref="/products" text="Products"></ion-back-button>
     </ion-buttons>
 
-    <div
-      class="title-wrapper"
-      id="open-modal"
-      [ngStyle]="{background: loading ? '#fff' : '#eff5f4'}"
-      tappable
-    >
-      <ng-container *ngIf="!loading; else loadingTemplate"
-        ><ion-label color="primary"
-          >Active
+    <div class="title-wrapper" id="open-modal" [ngStyle]="{background: loading ? '#fff' : '#eff5f4'}" tappable>
+      <ng-container *ngIf="!loading; else loadingTemplate"><ion-label color="primary">Active
           <ion-icon name="chevron-down"></ion-icon>
         </ion-label>
-        <span>5 channels</span></ng-container
-      >
+        <span>5 channels</span></ng-container>
       <ng-template #loadingTemplate>
         <ion-label color="primary">
           <ion-skeleton-text style="width: 80px" animated></ion-skeleton-text>
         </ion-label>
         <span>
-          <ion-skeleton-text style="width: 60px"></ion-skeleton-text
-        ></span>
+          <ion-skeleton-text style="width: 60px"></ion-skeleton-text></span>
       </ng-template>
     </div>
 
     <ion-buttons slot="end">
-      <ion-button
-        fill="clear"
-        [color]="loading ? 'medium' : 'primary'"
-        [disabled]="loading"
-      >
+      <ion-button fill="clear" [color]="loading ? 'medium' : 'primary'" [disabled]="loading">
         <ion-icon name="share-outline" slot="icon-only" size="small"></ion-icon>
       </ion-button>
-      <ion-button
-        fill="clear"
-        [color]="loading ? 'medium' : 'primary'"
-        [disabled]="loading"
-      >
-        <ion-icon
-          name="ellipsis-horizontal"
-          slot="icon-only"
-          size="small"
-        ></ion-icon>
+      <ion-button fill="clear" [color]="loading ? 'medium' : 'primary'" [disabled]="loading">
+        <ion-icon name="ellipsis-horizontal" slot="icon-only" size="small"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -58,14 +33,8 @@
   <ion-item *ngIf="loading" lines="none">
     <ion-icon name="pricetag" slot="start" color="medium"></ion-icon>
     <ion-label>
-      <ion-skeleton-text
-        animated
-        style="width: 50%; padding: 2px"
-      ></ion-skeleton-text>
-      <ion-skeleton-text
-        style="width: 100%"
-        class="ion-margin-top"
-      ></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 50%; padding: 2px"></ion-skeleton-text>
+      <ion-skeleton-text style="width: 100%" class="ion-margin-top"></ion-skeleton-text>
       <ion-skeleton-text style="width: 100%"></ion-skeleton-text>
     </ion-label>
   </ion-item>
@@ -79,31 +48,21 @@
       </ion-col>
 
       <ion-col size="6">
-        <ion-skeleton-text
-          style="width: 100%; height: 20vh"
-        ></ion-skeleton-text>
+        <ion-skeleton-text style="width: 100%; height: 20vh"></ion-skeleton-text>
       </ion-col>
       <ion-col size="6">
         <ion-row>
           <ion-col size="6">
-            <ion-skeleton-text
-              style="width: 100%; height: 8vh"
-            ></ion-skeleton-text>
+            <ion-skeleton-text style="width: 100%; height: 8vh"></ion-skeleton-text>
           </ion-col>
           <ion-col size="6">
-            <ion-skeleton-text
-              style="width: 100%; height: 8vh"
-            ></ion-skeleton-text>
+            <ion-skeleton-text style="width: 100%; height: 8vh"></ion-skeleton-text>
           </ion-col>
           <ion-col size="6">
-            <ion-skeleton-text
-              style="width: 100%; height: 8vh"
-            ></ion-skeleton-text>
+            <ion-skeleton-text style="width: 100%; height: 8vh"></ion-skeleton-text>
           </ion-col>
           <ion-col size="6">
-            <ion-skeleton-text
-              style="width: 100%; height: 8vh"
-            ></ion-skeleton-text>
+            <ion-skeleton-text style="width: 100%; height: 8vh"></ion-skeleton-text>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -117,25 +76,15 @@
 
   <div *ngIf="loading" class="ion-padding-top">
     <ion-item *ngFor="let i of [1,2,3]" lines="none" detail="true">
-      <ion-skeleton-text
-        style="width: 50px; height: 50px"
-        slot="start"
-      ></ion-skeleton-text>
+      <ion-skeleton-text style="width: 50px; height: 50px" slot="start"></ion-skeleton-text>
       <ion-label>
         <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-        <ion-skeleton-text
-          style="width: 60%"
-          class="ion-margin-top"
-        ></ion-skeleton-text>
+        <ion-skeleton-text style="width: 60%" class="ion-margin-top"></ion-skeleton-text>
       </ion-label>
     </ion-item>
   </div>
 
-  <ion-modal
-    #modal
-    trigger="open-modal"
-    [presentingElement]="presentingElement"
-  >
+  <ion-modal #modal trigger="open-modal" [presentingElement]="presentingElement">
     <ng-template>
       <ion-header>
         <ion-toolbar>
@@ -189,47 +138,31 @@
   </ion-modal>
 </ion-content>
 
-<a id="trigger" style="visibility: none" #trigger style="display: none"></a>
-<ion-modal
-  trigger="trigger"
-  [handle]="false"
-  style="bottom: 57px"
-  #modal2
-  [initialBreakpoint]="0.07"
-  [breakpoints]="[0.07, 0.25]"
-  (ionBreakpointDidChange)="breakpointChanged(modal2)"
->
-  <ng-template>
-    <ion-content>
-      <div class="header">
-        <h3>More details</h3>
-        <div
-          class="dropdown-btn"
-          (click)="modal2.setCurrentBreakpoint(sheetOpen ? 0.07 : 0.25); sheetOpen = !sheetOpen"
-        >
-          <ion-icon
-            [name]="sheetOpen ? 'chevron-down-outline' : 'chevron-up-outline'"
-          ></ion-icon>
-        </div>
+<ion-footer>
+  <div #myDiv class="bottom-sheet">
+    <div class="sheet-header">
+      <h3 class="ion-no-margin">More details</h3>
+      <div #dropdownBtn class="dropdown-btn" (click)="toggleBottomSheet()">
+        <ion-icon name='chevron-up-outline'></ion-icon>
       </div>
+    </div>
 
-      <ion-list>
-        <ion-item detail="true" lines="none">
-          <ion-icon name="cart-outline" slot="start"></ion-icon>
-          <ion-label>Shipping</ion-label>
-          <span slot="end"> 0 kg </span>
-        </ion-item>
-        <ion-item detail="true" lines="none">
-          <ion-icon name="folder-outline" slot="start"></ion-icon>
-          <ion-label>Product organization</ion-label>
-          <span slot="end"> Galaxies.dev </span>
-        </ion-item>
-        <ion-item detail="true" lines="none">
-          <ion-icon name="pricetags-outline" slot="start"></ion-icon>
-          <ion-label>Collections</ion-label>
-          <span slot="end"> Home page </span>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ng-template>
-</ion-modal>
+    <ion-list>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        <ion-label>Shipping</ion-label>
+        <span slot="end"> 0 kg </span>
+      </ion-item>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="folder-outline" slot="start"></ion-icon>
+        <ion-label>Product organization</ion-label>
+        <span slot="end"> Galaxies.dev </span>
+      </ion-item>
+      <ion-item detail="true" lines="none">
+        <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+        <ion-label>Collections</ion-label>
+        <span slot="end"> Home page </span>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-footer>
