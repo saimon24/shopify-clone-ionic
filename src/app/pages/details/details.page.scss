@@ -21,42 +21,6 @@
   }
 }
 
-.footer-div {
-  padding-left: 10px;
-  padding-right: 10px;
-  transform: translateY(240px);
-
-  // align-items: center;
-  -webkit-box-shadow: 0px -10px 10px -8px rgba(0, 0, 0, 0.17);
-  -moz-box-shadow: 0px -10px 10px -8px rgba(0, 0, 0, 0.17);
-  box-shadow: 0px -10px 10px -8px rgba(0, 0, 0, 0.17);
-  border-radius: 10px 10px 0px 0px;
-
-  background: #fff;
-  height: 300px;
-  transition: transform 0.15s ease-out;
-}
-
-.dropdown-btn {
-  transition: 300ms;
-  background: #f8f3fa;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 15px;
-  top: 12px;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-}
-
-
 .bottom-sheet {
   --header-height: 52px;
   --item-height: 50px;
@@ -65,14 +29,18 @@
   --itens-in-list: 3;
   transition: var(--transition-duration);
   position: absolute;
-  bottom: calc(-1 * ((var(--itens-in-list) * var(--item-height)) + (2 * var(--list-padding-block))) ); // just in case more itens are added in the future(--itens-in-list could also be changed progammatically)
+  background: #fff;
   width: 100%;
+
+  bottom: calc(
+    -1 * ((var(--itens-in-list) * var(--item-height)) +
+          (2 * var(--list-padding-block)))
+  ); // just in case more itens are added in the future(--itens-in-list could also be changed progammatically)
   padding-left: 10px;
   padding-right: 10px;
   box-shadow: 0px -10px 10px -8px rgba(0, 0, 0, 0.17);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  z-index: 9999999999;
 
   .sheet-header {
     display: flex;
@@ -87,4 +55,18 @@
       --min-height: var(--item-height);
     }
   }
+}
+
+.dropdown-btn {
+  transition: 300ms;
+  background: #f8f3fa;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+  top: 12px;
 }
