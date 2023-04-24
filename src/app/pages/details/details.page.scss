@@ -38,6 +38,7 @@
 }
 
 .dropdown-btn {
+  transition: 300ms;
   background: #f8f3fa;
   border-radius: 50%;
   width: 30px;
@@ -53,4 +54,37 @@
 .header {
   display: flex;
   justify-content: center;
+}
+
+
+.bottom-sheet {
+  --header-height: 52px;
+  --item-height: 50px;
+  --list-padding-block: 10px;
+  --transition-duration: 300ms;
+  --itens-in-list: 3;
+  transition: var(--transition-duration);
+  position: absolute;
+  bottom: calc(-1 * ((var(--itens-in-list) * var(--item-height)) + (2 * var(--list-padding-block))) ); // just in case more itens are added in the future(--itens-in-list could also be changed progammatically)
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 0px -10px 10px -8px rgba(0, 0, 0, 0.17);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  z-index: 9999999999;
+
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--header-height);
+  }
+
+  ion-list {
+    padding-block: var(--list-padding-block);
+    ion-item {
+      --min-height: var(--item-height);
+    }
+  }
 }
